@@ -1,3 +1,16 @@
+// Sample messages for testing
+var sampleMessages = [
+    { text: 'Congratulations to all the graduates!', signature: 'Proud Alumni', approved: true },
+    { text: 'The future is bright, keep pushing forward!', signature: 'Your Mentor', approved: true },
+    { text: 'Remember, the journey has just begun.', signature: 'Class of 2024', approved: false },
+    { text: 'Wishing you all the success in your future endeavors!', signature: 'Anonym', approved: false }
+];
+
+// Store sample messages in local storage if not already present
+if (!localStorage.getItem('messages')) {
+    localStorage.setItem('messages', JSON.stringify(sampleMessages));
+}
+
 document.getElementById('messageForm').addEventListener('submit', function(event) {
     event.preventDefault();
     
@@ -75,4 +88,8 @@ function loadReviewMessages() {
 
 if (document.getElementById('messageList')) {
     loadMessages();
+}
+
+if (document.getElementById('reviewList')) {
+    loadReviewMessages();
 }
