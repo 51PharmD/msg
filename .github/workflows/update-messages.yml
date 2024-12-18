@@ -2,8 +2,8 @@ name: Update Messages
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - messages.json
 
 jobs:
   update-messages:
@@ -12,14 +12,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
 
     - name: Commit and push changes
       run: |
