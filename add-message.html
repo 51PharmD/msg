@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Messages</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="authContainer">
+        <h1>Add Anonymous Messages</h1>
+        <form id="addMessageForm">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            
+            <label for="signature">Signature (Optional):</label>
+            <input type="text" id="signature" name="signature" placeholder="Your Signature">
+            
+            <button type="submit">Add Message</button>
+        </form>
+        <div id="messageList"></div>
+    </div>
+    
+    <script>
+        function authenticate() {
+            var password = prompt("Please enter the password to access this page:");
+            if (password !== "1") {
+                alert("Incorrect password. Access denied.");
+                document.body.innerHTML = "<h1>Access Denied</h1>";
+            } else {
+                document.getElementById('addMessageForm').style.display = 'block';
+            }
+        }
+
+        authenticate();
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
