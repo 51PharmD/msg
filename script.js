@@ -11,31 +11,34 @@ if (!localStorage.getItem('messages')) {
     localStorage.setItem('messages', JSON.stringify(sampleMessages));
 }
 
-document.getElementById('messageForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    var messageText = document.getElementById('message').value;
-    var signatureText = document.getElementById('signature').value;
-    
-    var newMessage = {
-        text: messageText,
-        signature: signatureText,
-        approved: false
-    };
-    
-    var messages = JSON.parse(localStorage.getItem('messages')) || [];
-    messages.push(newMessage);
-    localStorage.setItem('messages', JSON.stringify(messages));
-    
-    alert('Message submitted for review');
-    
-    // Clear the form
-    document.getElementById('message').value = '';
-    document.getElementById('signature').value = '';
-    
-    // Reload approved messages
-    loadMessages();
-});
+var messageForm = document.getElementById('messageForm');
+if (messageForm) {
+    messageForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        var messageText = document.getElementById('message').value;
+        var signatureText = document.getElementById('signature').value;
+        
+        var newMessage = {
+            text: messageText,
+            signature: signatureText,
+            approved: false
+        };
+        
+        var messages = JSON.parse(localStorage.getItem('messages')) || [];
+        messages.push(newMessage);
+        localStorage.setItem('messages', JSON.stringify(messages));
+        
+        alert('Message submitted for review');
+        
+        // Clear the form
+        document.getElementById('message').value = '';
+        document.getElementById('signature').value = '';
+        
+        // Reload approved messages
+        loadMessages();
+    });
+}
 
 // Function to load approved messages
 function loadMessages() {
