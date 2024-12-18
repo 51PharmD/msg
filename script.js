@@ -32,14 +32,21 @@ document.getElementById('messageForm').addEventListener('submit', function(event
     // Clear the form
     document.getElementById('message').value = '';
     document.getElementById('signature').value = '';
+    
+    // Reload approved messages
+    loadMessages();
 });
 
+// Function to load approved messages
 function loadMessages() {
     var messages = JSON.parse(localStorage.getItem('messages')) || [];
     var messageList = document.getElementById('messageList');
     
     messageList.innerHTML = '';
     
+    // Debugging output to console
+    console.log("Messages in local storage:", messages);
+
     messages.filter(msg => msg.approved).forEach(function(msg) {
         var newMessage = document.createElement('div');
         newMessage.className = 'message';
@@ -52,8 +59,12 @@ function loadMessages() {
         }
         messageList.appendChild(newMessage);
     });
+
+    // Debugging output to console
+    console.log("Loaded approved messages:", messageList.innerHTML);
 }
 
+// Function to load messages for review
 function loadReviewMessages() {
     var messages = JSON.parse(localStorage.getItem('messages')) || [];
     var reviewList = document.getElementById('reviewList');
@@ -84,8 +95,12 @@ function loadReviewMessages() {
         
         reviewList.appendChild(newMessage);
     });
+
+    // Debugging output to console
+    console.log("Loaded review messages:", reviewList.innerHTML);
 }
 
+// Load messages when the page loads
 if (document.getElementById('messageList')) {
     loadMessages();
 }
